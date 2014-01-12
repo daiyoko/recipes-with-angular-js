@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Recipes with Angular.js - Validating a Form Model Client-Side</title>
+    <meta keywords="javascript, js, angular.js, angularjs, recipes with angular.js, recipes with angularjs, best practices, cookbook, tutorial, book">
+    <meta name="viewport" content="width=device-width">
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="http://fdietz.github.io/recipes-with-angular-js/assets/application-64ae7a41d6f726f185cec00ea0549071.css">
+  </head>
+    <body ng-app="RecipesApp">
+
+        <div class="contain-to-grid">
+          <nav class="top-bar">
+            <ul class="title-area">
+              <li class="name">
+                <h1><a href="/recipes-with-angular-js">Recipes with Angular.js <img src="http://fdietz.github.io/recipes-with-angular-js/assets/AngularJS-Shield-small-0395a23b65050a4d4cc0febd3bbb93f0.png" alt="" width="36" height="36"></a>  </h1>
+              </li>
+              <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+            </ul>
+
+            <section class="top-bar-section">
+              <ul class="left">
+                <li><a href="/recipes-with-angular-js/toc.html">Table of Contents</a></li>
+                <li><a href="/recipes-with-angular-js/about.html">About</a></li>
+              </ul>
+
+            </section>
+          </nav>
+        </div>
+
+      <div class="row">
+        <div class="large-12 columns">
+          <ul class="breadcrumbs">
+  <li><a href="/recipes-with-angular-js">Home</a></li>
+  <li><a href="/recipes-with-angular-js/using-forms">using-forms</a></li>
+  <li class="current">Validating a Form Model Client-Side</li>
+</ul>
+
+<div class="recipe-actions">
+  
+    <form class="jsfiddle" method="post" action="http://jsfiddle.net/api/post/library/pure/" target="_blank">
+              <input type="hidden" name="html" value="&lt;body ng-app=&quot;MyApp&quot;&gt;
+  &lt;div ng-controller=&quot;User&quot;&gt;
+    &lt;form name=&quot;form&quot; ng-submit=&quot;submit()&quot; novalidate&gt;
+      &lt;label&gt;Firstname&lt;/label&gt;
+      &lt;input name=&quot;firstname&quot; type=&quot;text&quot; ng-model=&quot;user.firstname&quot; required/&gt;
+      &lt;label&gt;Lastname&lt;/label&gt;
+      &lt;input type=&quot;text&quot; ng-model=&quot;user.lastname&quot; required/&gt;
+      &lt;label&gt;Age&lt;/label&gt;
+      &lt;input type=&quot;text&quot; ng-model=&quot;user.age&quot;/&gt;
+      &lt;br&gt;
+      &lt;button class=&quot;btn&quot;&gt;Submit&lt;/button&gt;
+    &lt;/form&gt;
+
+    User Model: &#123;&#123;user&#125;&#125;
+    &lt;br&gt;
+    Form was submitted: &#123;&#123;wasSubmitted&#125;&#125;
+    &lt;br&gt;
+    Firstname input valid: &#123;&#123;form.firstname.$valid&#125;&#125;
+    &lt;br&gt;
+    Firstname input invalid: &#123;&#123;form.firstname.$invalid&#125;&#125;
+    &lt;br&gt;
+    Firstname validation error: &#123;&#123;form.firstname.$error&#125;&#125;
+    &lt;br&gt;
+    Form valid: &#123;&#123;form.$valid&#125;&#125;
+    &lt;br&gt;
+    Form validation error: &#123;&#123;form.$error&#125;&#125;
+  &lt;/div&gt;
+&lt;/body&gt;"></input>
+
+              <input type="hidden" name="js" value="var app = angular.module(&quot;MyApp&quot;, []);
+
+app.controller(&quot;User&quot;, function($scope) {
+  $scope.user = {};
+  $scope.wasSubmitted = false;
+
+  $scope.submit = function() {
+    $scope.wasSubmitted = true;
+  };
+});"></input>
+
+        
+              <input type="hidden" name="resources" value="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js,http://code.jquery.com/jquery-1.10.1.min.js,http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css"></input>
+
+        <button class="btn small btn-primary">Edit in jsfiddle</button>
+      </form>
+  
+</div>
+
+<h2>Validating a Form Model Client-Side</h2>
+
+<h3 id="problem">Problem</h3>
+
+<p>You wish to validate the form client-side using HTML5 form attributes.</p>
+
+<h3 id="solution">Solution</h3>
+
+<p>Angular.js works in tandem with HTML5 form attributes. Let us start with the same form but let us add some HTML5 attributes to make the input required:</p>
+<div>
+  <pre data-line=''><code class='language-markup'>&lt;form name=&quot;form&quot; ng-submit=&quot;submit()&quot;&gt;
+  &lt;label&gt;Firstname&lt;/label&gt;
+  &lt;input name=&quot;firstname&quot; type=&quot;text&quot; ng-model=&quot;user.firstname&quot; required/&gt;
+  &lt;label&gt;Lastname&lt;/label&gt;
+  &lt;input type=&quot;text&quot; ng-model=&quot;user.lastname&quot; required/&gt;
+  &lt;label&gt;Age&lt;/label&gt;
+  &lt;input type=&quot;text&quot; ng-model=&quot;user.age&quot;/&gt;
+  &lt;br&gt;
+  &lt;button class=&quot;btn&quot;&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+</div>
+<p>It is still the same form but this time we defined the <code>name</code> attribute on the form and made the input <code>required</code> for the firstname.</p>
+
+<p>Let us add some more debug output below the form:</p>
+<div>
+  <pre data-line=''><code class='language-markup'>Firstname input valid: {{form.firstname.$valid}}
+&lt;br&gt;
+Firstname validation error: {{form.firstname.$error}}
+&lt;br&gt;
+Form valid: {{form.$valid}}
+&lt;br&gt;
+Form validation error: {{form.$error}}</code></pre>
+</div>
+<p>You can find the complete example on <a href="https://github.com/fdietz/recipes-with-angular-js-examples/tree/master/chapter7/recipe2">github</a>.</p>
+
+<h3 id="discussion">Discussion</h3>
+
+<p>When starting with a fresh empty form, you will notice that Angular adds the css class <code>ng-pristine</code> and <code>ng-valid</code> to the form tag and each input tag. When editing the form the <code>ng-pristine</code> class will be removed from the changed input field and also from the form tag. Instead it will be replaced by the <code>ng-dirty</code> class. Very useful because it allows you to easily add new features to your app depending on these states.</p>
+
+<p>In addition to these two css classes there are two more to look into. The <code>ng-valid</code> class will be added whenever an input is valid, otherwise the css class <code>ng-invalid</code> is added. Note that the form tag also gets either a valid or invalid class depending on the input fields. To demonstrate this I’ve added the <code>required</code> HTML5 attribute. Initially, the firstname and lastname input fields are empty and therefore have the <code>ng-invalid</code> css class, whereas the age input field has the <code>ng-valid</code> class. Additionally, there’s <code>ng-invalid-required</code> class alongside the <code>ng-invalid</code> for even more specificity.</p>
+
+<p>Since we defined the <code>name</code> attribute on the form HTML element we can now access Angular’s form controller via scope variables. In the debug output we can check the validity and specific error for each named form input and the form itself. Note that this only works on the level of the form’s name attributes and not on the model scope. If you output the following expression <code>{{user.firstname.$error}}</code> it will not work.</p>
+
+<p>Angular’s form controller exposes <code>$valid</code>, <code>$invalid</code>, <code>$error</code>, <code>$pristine</code> and <code>$dirty</code> variables.</p>
+
+<p>For validation, Angular provides built-in directives including <code>required</code>, <code>pattern</code>, <code>minlength</code>, <code>maxlength</code>, <code>min</code> and <code>max</code>.</p>
+
+<p>Let us use Angular’s form integration to actually show validation errors in the next recipe.</p>
+
+<div class="panel radius similar-pages">
+  <h4>Similar Recipes</h4>
+  <ul>
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        <li>
+          <a href="/recipes-with-angular-js/using-forms/displaying-form-validation-errors-with-the-twitter-bootstrap-framework.html">Displaying Form Validation Errors with the Twitter Bootstrap framework</a>
+        </li>
+      
+    
+      
+        <li>
+          <a href="/recipes-with-angular-js/using-forms/displaying-form-validation-errors.html">Displaying Form Validation Errors</a>
+        </li>
+      
+    
+      
+        <li>
+          <a href="/recipes-with-angular-js/using-forms/implement-a-basic-form.html">Implementing a Basic Form</a>
+        </li>
+      
+    
+      
+        <li>
+          <a href="/recipes-with-angular-js/using-forms/implementing-custom-validations.html">Implementing Custom Validations</a>
+        </li>
+      
+    
+      
+    
+      
+        <li>
+          <a href="/recipes-with-angular-js/using-forms/only-enabling-submit-button-if-the-form-is-valid.html">Only Enabling the Submit Button if the Form is Valid</a>
+        </li>
+      
+    
+      
+        <li>
+          <a href="/recipes-with-angular-js/using-forms/validating-a-form-model-client-side.html">Validating a Form Model Client-Side</a>
+        </li>
+      
+    
+  </ul>
+</div>
+
+        </div>
+      </div>
+
+      <footer class="row">
+        <div class="large-12 columns">
+          <hr>
+          <div class="row">
+            <div class="large-6 columns">
+              <p>
+                Maintained by <a href="http://fdietz.de">Frederik Dietz</a>
+              </p>
+            </div>
+
+            <div class="large-6 columns text-right">
+              <p>All content licensed with <a href="http://creativecommons.org/">Creative Commons</a></p>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      <script src="http://fdietz.github.io/recipes-with-angular-js/assets/application-0baff5f0e43111ed2b7cbc8b8b523b9f.js"></script>
+      <script>
+        $(document).foundation();
+      </script>
+
+      <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-42557266-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+      </script>
+
+      <script type="text/javascript">
+        $(function() {
+          $('#search-query').lunrSearch({
+            indexUrl: '/recipes-with-angular-js/search.json',
+            results:  '#search-results',
+            entries:  '.entries',
+            template: '#search-results-template'
+          });
+        });
+      </script>
+    </body>
+</html>
