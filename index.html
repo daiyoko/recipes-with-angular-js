@@ -1,220 +1,79 @@
 <!DOCTYPE html>
 <html>
+
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Recipes with Angular.js - Home</title>
-    <meta keywords="javascript, js, angular.js, angularjs, recipes with angular.js, recipes with angularjs, best practices, cookbook, tutorial, book">
-    <meta name="viewport" content="width=device-width">
-    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="http://fdietz.github.io/recipes-with-angular-js/assets/application-64ae7a41d6f726f185cec00ea0549071.css">
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Recipes-with-angular-js : Recipes with Angular.js Site" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Recipes-with-angular-js</title>
   </head>
-    <body ng-app="RecipesApp">
 
-        <div class="contain-to-grid">
-          <nav class="top-bar">
-            <ul class="title-area">
-              <li class="name">
-                <h1><a href="/recipes-with-angular-js">Recipes with Angular.js <img src="http://fdietz.github.io/recipes-with-angular-js/assets/AngularJS-Shield-small-0395a23b65050a4d4cc0febd3bbb93f0.png" alt="" width="36" height="36"></a>  </h1>
-              </li>
-              <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-            </ul>
+  <body>
 
-            <section class="top-bar-section">
-              <ul class="left">
-                <li><a href="/recipes-with-angular-js/toc.html">Table of Contents</a></li>
-                <li><a href="/recipes-with-angular-js/about.html">About</a></li>
-              </ul>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/ryo-utsunomiya/recipes-with-angular-js">View on GitHub</a>
 
+          <h1 id="project_title">Recipes-with-angular-js</h1>
+          <h2 id="project_tagline">Recipes with Angular.js Site</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/ryo-utsunomiya/recipes-with-angular-js/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/ryo-utsunomiya/recipes-with-angular-js/tarball/master">Download this project as a tar.gz file</a>
             </section>
-          </nav>
-        </div>
-
-      <div class="row">
-        <div class="large-12 columns">
-          <div class="row">
-  <div class="large-12 columns">
-    <!-- <h1>Welcome to Recipes with Angular.js</h1> -->
-    <p>A community project dedicated to collecting resources for the <a href="http://angularjs.org/">Angular.js</a> framework. You find here easy to follow cookbook style recipes for issues you are likely to face when working with Angular.js.</p>
-
-    <!-- <p><a href="http://angularjs.org/">Angular.js</a> is the superheroic Javascript MVW framework developed by Google.</p> -->
-  </div>
-</div>
-
-<br>
-
-<div class="row">
-  <div class="large-12 columns">
-    <!-- <h3>Search Recipes</h3> -->
-
-    <div id="search">
-      <form action="/search" method="get">
-        <input type="text" id="search-query" name="q" placeholder="Search for Recipes..." autocomplete="off">
-      </form>
+        </header>
     </div>
 
-    <section id="search-results" style="display: none;">
-      <!-- <p>Search results</p> -->
-      <ul class="entries">
-      </ul>
-    </section>
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h3>
+<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
 
-    
-      <script id="search-results-template" type="text/mustache">
-        {{#entries}}
-          <li>
-            <a href="/recipes-with-angular-js{{url}}">{{title}}</a>
-          </li>
-        {{/entries}}
-      </script>
-    
-  </div>
-</div>
+<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
 
-<br>
+<pre><code>$ cd your_repo_root/repo_name
+$ git fetch origin
+$ git checkout gh-pages
+</code></pre>
 
-<div class="row">
+<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
 
-  <div class="large-6 columns">
-    <h3>Table of Content</h3>
-    <ol>
-      <li> <a href="/recipes-with-angular-js/introduction/index.html">Introduction</a> </li>
-      <li> <a href="/recipes-with-angular-js/controllers/index.html">Controllers</a> </li>
-      <li> <a href="/recipes-with-angular-js/directives/index.html">Directives</a> </li>
-      <li> <a href="/recipes-with-angular-js/filters/index.html">Filters</a> </li>
-      <li> <a href="/recipes-with-angular-js/consuming-external-services/index.html">Consuming External Services</a> </li>
-      <li> <a href="/recipes-with-angular-js/urls-routing-and-partials/index.html">URLs, Routing and Partials</a> </li>
-      <li> <a href="/recipes-with-angular-js/common-user-interface-patterns/index.html">Common User Interface Patterns</a> </li>
-      <li> <a href="/recipes-with-angular-js/backend-integration-with-ruby-on-rails/index.html">Backend Integration with Ruby on Rails</a> </li>
-      <li> <a href="/recipes-with-angular-js/backend-integration-with-node-express/index.html">Backend Integration with Node Express</a> </li>
-    </ol>
-  </div>
+<h3>
+<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
 
-  <div class="large-6 columns">
-    <h3>Latest Updates</h3>
-    <ul>
-      
-        
-          <li>
-            <a href="/recipes-with-angular-js/common-user-interface-patterns/displaying-a-loading-spinner.html">Displaying a Loading Spinner</a>
-          </li>
-        
-      
-        
-          <li>
-            <a href="/recipes-with-angular-js/common-user-interface-patterns/displaying-a-flash-notice-failure-message.html">Displaying a Flash Notice/Failure Message</a>
-          </li>
-        
-      
-        
-          <li>
-            <a href="/recipes-with-angular-js/backend-integration-with-ruby-on-rails/validating-forms-server-side.html">Validating Forms Server-Side</a>
-          </li>
-        
-      
-        
-      
-        
-          <li>
-            <a href="/recipes-with-angular-js/backend-integration-with-ruby-on-rails/implementing-client-side-routing.html">Implementing Client-Side Routing</a>
-          </li>
-        
-      
-        
-          <li>
-            <a href="/recipes-with-angular-js/backend-integration-with-ruby-on-rails/consuming-rest-apis.html">Consuming REST APIs</a>
-          </li>
-        
-      
-        
-      
-        
-          <li>
-            <a href="/recipes-with-angular-js/backend-integration-with-node-express/implementing-client-side-routing.html">Implementing Client-Side Routing</a>
-          </li>
-        
-      
-        
-          <li>
-            <a href="/recipes-with-angular-js/backend-integration-with-node-express/consuming-rest-apis.html">Consuming REST APIs</a>
-          </li>
-        
-      
-        
-      
-    </ul>
-  </div>
+<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
 
-  <!-- <div class="large-6 columns">
-    <div class="row panel support-me-panel">
-      <div class="large-12 columns">
-        <h3>Support me and buy the book!</h3>
-      </div>
-      <div class="large-4 columns">
-        <a href="https://leanpub.com/recipes-with-angular-js"><img src="http://fdietz.github.io/recipes-with-angular-js/assets/book-medium-1f58c2f2997953a5c5118cfad4b9901c.png" alt="" width="200px"></a>
-      </div>
-      <div class="large-8 columns">
-        <h5>Recipes with Angular.js</h5>
-        <h5 class="subheader">Practical concepts and techniques for rapid web application development <span class="author">by <a href="mailto: fdietz@gmail.com">Frederik Dietz</a></span></h5>
+<h3>
+<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
 
+<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
 
-        <a class="button small" href="https://leanpub.com/recipes-with-angular-js">Learn More</a>
-        <div class="clearfix"></div>
-        <a class="button small success" href="https://leanpub.com/recipes-with-angular-js/purchases/new">Buy on Leanpub</a>
-        <a class="button small success" href="http://www.amazon.com/dp/B00DK95V48">Buy on Amazon</a>
+<h3>
+<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
 
-      </div>
+<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+
+<h3>
+<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+
+<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+      </section>
     </div>
-  </div> -->
-</div>
-        </div>
-      </div>
 
-      <footer class="row">
-        <div class="large-12 columns">
-          <hr>
-          <div class="row">
-            <div class="large-6 columns">
-              <p>
-                Maintained by <a href="http://fdietz.de">Frederik Dietz</a>
-              </p>
-            </div>
-
-            <div class="large-6 columns text-right">
-              <p>All content licensed with <a href="http://creativecommons.org/">Creative Commons</a></p>
-            </div>
-          </div>
-        </div>
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Recipes-with-angular-js maintained by <a href="https://github.com/ryo-utsunomiya">ryo-utsunomiya</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
       </footer>
+    </div>
 
-      <script src="http://fdietz.github.io/recipes-with-angular-js/assets/application-0baff5f0e43111ed2b7cbc8b8b523b9f.js"></script>
-      <script>
-        $(document).foundation();
-      </script>
+    
 
-      <script type="text/javascript">
-
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-42557266-1']);
-        _gaq.push(['_trackPageview']);
-
-        (function() {
-          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        })();
-
-      </script>
-
-      <script type="text/javascript">
-        $(function() {
-          $('#search-query').lunrSearch({
-            indexUrl: '/recipes-with-angular-js/search.json',
-            results:  '#search-results',
-            entries:  '.entries',
-            template: '#search-results-template'
-          });
-        });
-      </script>
-    </body>
+  </body>
 </html>
